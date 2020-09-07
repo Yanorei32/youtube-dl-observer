@@ -13,10 +13,10 @@ type Win32_Process struct {
 func main() {
 	var prevCommandLines = make([]string, 0)
 
-	for {
-		var ytdlProcs []Win32_Process
-		q := wmi.CreateQuery(&ytdlProcs, "where name = 'youtube-dl.exe'")
+	var ytdlProcs []Win32_Process
+	q := wmi.CreateQuery(&ytdlProcs, "where name = 'youtube-dl.exe'")
 
+	for {
 		if err := wmi.Query(q, &ytdlProcs); err != nil {
 			log.Fatal(err)
 		}
